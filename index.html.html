@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Virilidade Total — Recupere Sua Força</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --navy-card: #151d2e;
+    --gold: #c9a84c;
+    --gold-light: #e4c97e;
+    --gold-dim: rgba(201,168,76,0.15);
+    --white: #f8f6f0;
+    --muted: #8b96a8;
+    --red: #e05252;
+    --green: #3db87a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--gold);
+    color: #0a0f1e;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── LIVE COUNTER ── */
+  .live-bar {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .live-dot {
+    width: 9px; height: 9px;
+    background: var(--red);
+    border-radius: 50%;
+    animation: pulse 1.4s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.3); }
+  }
+  .live-count {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 48px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.13;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  /* ── VSL BLOCK ── */
+  .vsl-wrap {
+    max-width: 500px;
+    margin: 0 auto 16px;
+    padding: 0 16px;
+  }
+
+  .vsl-box {
+    background: #000;
+    border: 2px solid rgba(201,168,76,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .vsl-caption {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    padding: 0 16px;
+  }
+
+  /* ── CTA ── */
+  .cta-wrap {
+    text-align: center;
+    padding: 0 16px 64px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #c9a84c, #e4c97e);
+    color: #0a0f1e;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 20px 56px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.25));
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.5);
+  }
+  .cta-sub {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .cta-sub svg { opacity: 0.6; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    max-width: 600px;
+    margin: 0 auto 64px;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 16px;
+  }
+
+  /* ── COMMENTS ── */
+  .comments-section {
+    max-width: 720px;
+    margin: 0 auto 64px;
+    padding: 0 16px;
+  }
+
+  .comment-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1.5px solid rgba(201,168,76,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .comment-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--white);
+  }
+
+  .comment-location {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .comment-text {
+    font-size: 14px;
+    color: #c8d0db;
+    line-height: 1.7;
+  }
+
+  .verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+
+  /* ── NOTIFICATION TOAST ── */
+  #toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+  }
+
+  .toast {
+    background: #1a2338;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 280px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    animation: slideIn 0.4s ease forwards;
+    opacity: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .toast.out {
+    animation: slideOut 0.4s ease forwards;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(-110%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(-110%); opacity: 0; }
+  }
+  .toast-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .toast-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .toast-msg {
+    color: var(--white);
+    font-size: 13px;
+  }
+  .toast-msg span {
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+    padding: 32px 16px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .cta-btn { padding: 18px 32px; font-size: 16px; }
+    .comment-card { padding: 18px 16px; }
+    #toast-container { left: 12px; bottom: 12px; }
+    .toast { max-width: calc(100vw - 40px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
+    .cta-btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">⚠️ Atenção: Vagas limitadas para o Acesso Especial — Garantia de 7 dias ou dinheiro de volta</div>
+
+<!-- LIVE COUNTER -->
+<div class="live-bar">
+  <span class="live-dot"></span>
+  <span><span class="live-count" id="live-num">247</span> homens estão a assistir agora mesmo</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Saúde Masculina</div>
+  <h1>O Método Que Está a<br>Devolver a <em>Força Real</em><br>aos Homens de Moçambique</h1>
+  <p class="sub">Descubra a abordagem natural, discreta e comprovada que está a ajudar homens a recuperar o desempenho, a confiança e a energia — sem medicamentos, sem vergonha.</p>
+</section>
+
+<!-- VSL -->
+<div class="vsl-wrap">
+  <div class="vsl-box" id="vsl-area">
+    <vturb-smartplayer id="vid-6ac58b3f07ad220070e01931" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 178.14814814814815% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+    <script type="text/javascript">
+      var s=document.createElement("script");
+      s.src="https://scripts.converteai.net/eb7e68da-d4e7-4bb2-be72-d90f4eaa254a/players/6ac58b3f07ad220070e01931/v4/player.js";
+      s.async=!0;
+      document.head.appendChild(s);
+    </script>
+  </div>
+</div>
+<p class="vsl-caption">🔒 Vídeo disponível por tempo limitado — assista até ao fim</p>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <button class="cta-btn" onclick="window.location.href='https://pay.lojou.app/Xao0r'">
+    Quero Recuperar a Minha Força Agora →
+  </button>
+  <div class="cta-sub">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Pagamento 100% seguro · Garantia de 7 dias
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COMMENTS -->
+<section class="comments-section">
+  <h2 class="section-title">O que outros homens estão a dizer</h2>
+
+  <div class="comment-card">
+    <div class="avatar">A</div>
+    <div>
+      <div class="comment-meta">
+        <span class="comment-name">António M.</span>
+        <span class="comment-location">Maputo</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p class="comment-text">Estava sem esperança depois de anos com este problema. Segui o método durante 3 semanas e a diferença foi enorme. A minha confiança voltou e a minha relação melhorou muito. Recomendo a qualquer homem que esteja a passar pelo mesmo.</p>
+      <span class="verified">✔ Compra verificada</span>
+    </div>
+  </div>
+
+  <div class="comment-card">
+    <div class="avatar">C</div>
+    <div>
+      <div class="comment-meta">
+        <span class="comment-name">Carlos J.</span>
+        <span class="comment-location">Nampula</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p class="comment-text">Fiquei com medo de comprar no início, mas a garantia deu-me confiança. No segundo mês já sentia a diferença. A informação é clara e fácil de seguir. Valeu cada centavo.</p>
+      <span class="verified">✔ Compra verificada</span>
+    </div>
+  </div>
+
+  <div class="comment-card">
+    <div class="avatar">M</div>
+    <div>
+      <div class="comment-meta">
+        <span class="comment-name">Manuel F.</span>
+        <span class="comment-location">Beira</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p class="comment-text">Tinha vergonha de falar sobre isto com alguém. Este método deu-me um caminho claro e discreto. Os resultados começaram a aparecer nas primeiras semanas. Obrigado por existir.</p>
+      <span class="verified">✔ Compra verificada</span>
+    </div>
+  </div>
+
+  <div class="comment-card">
+    <div class="avatar">J</div>
+    <div>
+      <div class="comment-meta">
+        <span class="comment-name">João B.</span>
+        <span class="comment-location">Tete</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p class="comment-text">Já tinha gasto muito dinheiro em farmácias e não resolvia nada. Aqui finalmente entendi a raiz do problema. O método é natural e faz todo o sentido. Estou muito satisfeito.</p>
+      <span class="verified">✔ Compra verificada</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- FINAL CTA -->
+<div class="cta-wrap" style="padding-bottom: 80px;">
+  <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Não esperes mais. Cada dia que passa é um dia a menos de qualidade de vida.</p>
+  <button class="cta-btn" onclick="window.location.href='https://pay.lojou.app/Xao0r'">
+    Garantir o Meu Acesso Agora →
+  </button>
+  <div class="cta-sub">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Acesso imediato · Garantia de 7 dias sem risco
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Virilidade Total. Todos os direitos reservados.</p>
+  <p style="margin-top:4px;">Este produto não substitui aconselhamento médico profissional.</p>
+  <p style="margin-top:4px;"><a href="#" style="color:var(--muted);">Política de Privacidade</a> · <a href="#" style="color:var(--muted);">Termos de Uso</a> · <a href="#" style="color:var(--muted);">Contacto</a></p>
+</footer>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<script>
+// ── LIVE COUNTER ──
+let liveBase = 247;
+function updateLiveCount() {
+  const delta = Math.floor(Math.random() * 7) - 3;
+  liveBase = Math.max(180, Math.min(350, liveBase + delta));
+  const el = document.getElementById('live-num');
+  if (el) el.textContent = liveBase;
+}
+setInterval(updateLiveCount, 8000);
+
+// ── NOTIFICATIONS ──
+const notifications = [
+  { name: "Rosário", city: "Nampula" },
+  { name: "Ersio", city: "Maputo" },
+  { name: "Hélio", city: "Beira" },
+  { name: "Augusto", city: "Tete" },
+  { name: "Filipe", city: "Quelimane" },
+  { name: "Domingos", city: "Nacala" },
+  { name: "Armindo", city: "Lichinga" },
+  { name: "Benedito", city: "Chimoio" },
+  { name: "Sérgio", city: "Maxixe" },
+  { name: "Tomás", city: "Inhambane" },
+  { name: "Custódio", city: "Gaza" },
+  { name: "Raimundo", city: "Pemba" },
+];
+
+const initials = name => name.charAt(0).toUpperCase();
+
+function showToast(person) {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <div class="toast-icon">${initials(person.name)}</div>
+    <div>
+      <div class="toast-label">A assistir agora</div>
+      <div class="toast-msg"><span>${person.name}</span> de ${person.city} começou a ver o vídeo</div>
+    </div>
+  `;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('out');
+    setTimeout(() => toast.remove(), 400);
+  }, 4500);
+}
+
+let notifIndex = 0;
+function scheduleNext() {
+  const delay = 6000 + Math.random() * 7000;
+  setTimeout(() => {
+    showToast(notifications[notifIndex % notifications.length]);
+    notifIndex++;
+    scheduleNext();
+  }, delay);
+}
+
+// First one fires quickly
+setTimeout(() => {
+  showToast(notifications[0]);
+  notifIndex = 1;
+  scheduleNext();
+}, 3000);
+</script>
+</body>
+</html>
